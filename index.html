@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ままるスタジオ | Mamaru Studio</title>
+<meta name="description" content="個人でアプリを作っている小さなスタジオ『ままるスタジオ』です。シンプルで使いやすいアプリを目指しています。">
+<style>
+  :root {
+    --navy: #0a0a37;
+    --navy-light: #141452;
+    --yellow: #ffc93c;
+    --text: #f2f2f7;
+    --text-dim: #b8b8cc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 64px; }
+  header { text-align: center; padding: 24px 0 40px; }
+  header img { width: 128px; height: 128px; border-radius: 50%; }
+  header h1 { font-size: 2rem; margin-top: 20px; letter-spacing: 0.04em; }
+  header .en { color: var(--yellow); font-size: 0.95rem; letter-spacing: 0.18em; margin-top: 4px; }
+  header p { color: var(--text-dim); margin-top: 16px; }
+  section { background: var(--navy-light); border-radius: 16px; padding: 28px; margin-top: 24px; }
+  section h2 { font-size: 1.15rem; color: var(--yellow); margin-bottom: 12px; }
+  .app { display: flex; gap: 20px; align-items: center; }
+  .app img { width: 96px; height: 96px; border-radius: 22px; flex-shrink: 0; }
+  .app h3 { font-size: 1.1rem; }
+  .app p { color: var(--text-dim); font-size: 0.95rem; }
+  .badge {
+    display: inline-block; margin-top: 8px; padding: 2px 12px;
+    border: 1px solid var(--yellow); color: var(--yellow);
+    border-radius: 999px; font-size: 0.8rem;
+  }
+  a { color: var(--yellow); }
+  ul.links { list-style: none; }
+  ul.links li { padding: 6px 0; }
+  footer { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 48px; }
+  @media (max-width: 480px) {
+    .app { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="logo.webp" alt="ままるスタジオのロゴ">
+    <h1>ままるスタジオ</h1>
+    <div class="en">MAMARU STUDIO</div>
+    <p>個人でアプリを作っている、小さなスタジオです。<br>シンプルで使いやすいアプリを目指しています。</p>
+  </header>
+
+  <section>
+    <h2>アプリ</h2>
+    <div class="app">
+      <img src="timer-icon.png" alt="シンプルタイマーのアイコン">
+      <div>
+        <h3>シンプルタイマー</h3>
+        <p>複数のタイマーとストップウォッチをひとつにまとめた、シンプルなタイマーアプリです。料理、勉強、筋トレなど、日常のいろいろな場面で使えます。</p>
+        <span class="badge">リリース準備中</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>リンク</h2>
+    <ul class="links">
+      <li>X（旧Twitter）: <a href="https://x.com/mamaru_studio">@mamaru_studio</a></li>
+      <li><a href="https://maxa999jp.github.io/simple-timer-privacy/">プライバシーポリシー</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>お問い合わせ</h2>
+    <p>アプリに関するお問い合わせは、メールまたはXのDMでお願いします。<br>
+    メール: <a href="mailto:mamaru999jp@gmail.com">mamaru999jp@gmail.com</a></p>
+  </section>
+
+  <footer>© 2026 ままるスタジオ (Mamaru Studio)</footer>
+</div>
+</body>
+</html>
