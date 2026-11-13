@@ -1,87 +1,324 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
 <title>ままるスタジオ | Mamaru Studio</title>
-<meta name="description" content="個人でアプリを作っている小さなスタジオ『ままるスタジオ』です。シンプルで使いやすいアプリを目指しています。">
+<meta name="description" content="個人でアプリを作っている小さなスタジオ『ままるスタジオ』です。シンプルで使いやすいアプリを目指しています。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --navy: #0a0a37;
-    --navy-light: #141452;
+    --bg: #fdfbf7;
+    --surface: #ffffff;
+    --ink: #0a0a37;
+    --ink-2: #41416b;
+    --muted: #6b6b8c;
+    --line: #e7e2d6;
     --yellow: #ffc93c;
-    --text: #f2f2f7;
-    --text-dim: #b8b8cc;
+    --yellow-deep: #f5a623;
+    --peach: #ffb59e;
+    --mint: #9fe3c0;
+    --navy: #0a0a37;
+    --navy-2: #141452;
+    --on-navy: #f2f2f7;
+    --on-navy-dim: #b8b8cc;
+    --chip: #fff3d1;
+    --radius: 20px;
+    --shadow: 0 10px 30px rgba(10, 10, 55, 0.08);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #07072a;
+      --surface: #141452;
+      --ink: #f2f2f7;
+      --ink-2: #d6d6e8;
+      --muted: #a5a5c2;
+      --line: #2a2a6e;
+      --chip: #2a2a6e;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
-    background: var(--navy);
-    color: var(--text);
-    line-height: 1.8;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Maru Gothic ProN", "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 64px; }
-  header { text-align: center; padding: 24px 0 40px; }
-  header img { width: 128px; height: 128px; border-radius: 50%; }
-  header h1 { font-size: 2rem; margin-top: 20px; letter-spacing: 0.04em; }
-  header .en { color: var(--yellow); font-size: 0.95rem; letter-spacing: 0.18em; margin-top: 4px; }
-  header p { color: var(--text-dim); margin-top: 16px; }
-  section { background: var(--navy-light); border-radius: 16px; padding: 28px; margin-top: 24px; }
-  section h2 { font-size: 1.15rem; color: var(--yellow); margin-bottom: 12px; }
-  .app { display: flex; gap: 20px; align-items: center; }
-  .app img { width: 96px; height: 96px; border-radius: 22px; flex-shrink: 0; }
-  .app h3 { font-size: 1.1rem; }
-  .app p { color: var(--text-dim); font-size: 0.95rem; }
-  .badge {
-    display: inline-block; margin-top: 8px; padding: 2px 12px;
-    border: 1px solid var(--yellow); color: var(--yellow);
-    border-radius: 999px; font-size: 0.8rem;
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2rem; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header.site {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
   }
-  a { color: var(--yellow); }
-  ul.links { list-style: none; }
-  ul.links li { padding: 6px 0; }
-  footer { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 48px; }
-  @media (max-width: 480px) {
-    .app { flex-direction: column; text-align: center; }
+  .nav { display: flex; align-items: center; gap: 28px; min-height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; font-size: 1.05rem; letter-spacing: 0.02em; white-space: nowrap; }
+  .brand img { width: 38px; height: 38px; border-radius: 50%; }
+  .brand small { display: block; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 0.58rem; letter-spacing: 0.28em; color: var(--yellow-deep); line-height: 1; margin-top: 2px; }
+  nav.main { margin-left: auto; display: flex; gap: 4px; }
+  nav.main a { text-decoration: none; font-size: 0.92rem; font-weight: 700; color: var(--ink-2); padding: 8px 14px; border-radius: 999px; white-space: nowrap; }
+  nav.main a:hover { background: var(--chip); color: var(--ink); }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 72px 0 88px; }
+  .hero .blob { position: absolute; border-radius: 50%; z-index: 0; }
+  .blob-peach { width: 340px; height: 340px; background: var(--peach); opacity: 0.45; top: -120px; right: -60px; }
+  .blob-mint { width: 220px; height: 220px; background: var(--mint); opacity: 0.5; bottom: -90px; left: -70px; }
+  .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+  .hero-copy .badge {
+    display: inline-block; background: var(--yellow); color: #0a0a37;
+    font-size: 0.78rem; font-weight: 900; letter-spacing: 0.06em;
+    padding: 4px 14px; border-radius: 999px; margin-bottom: 20px;
+  }
+  h1 {
+    font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 1.25; font-weight: 900;
+    margin: 0 0 18px; letter-spacing: 0.01em;
+  }
+  h1 .hl { background: linear-gradient(transparent 62%, var(--yellow) 62%, var(--yellow) 94%, transparent 94%); padding: 0 2px; }
+  .hero-copy p { color: var(--ink-2); font-size: 1.05rem; margin: 0 0 30px; max-width: 30em; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 10px 26px; border-radius: 999px;
+    font-weight: 900; font-size: 0.98rem; text-decoration: none; border: 2px solid transparent;
+    cursor: pointer; font-family: inherit;
+  }
+  .btn-primary { background: var(--navy); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn-primary { background: var(--yellow); color: #0a0a37; } }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--yellow-deep); }
+  .hero-visual { position: relative; justify-self: center; }
+  .hero-visual .logo-big {
+    width: min(300px, 70vw); height: auto; border-radius: 50%;
+    box-shadow: 0 24px 60px rgba(10, 10, 55, 0.22);
+  }
+  .float-card {
+    position: absolute; display: flex; align-items: center; gap: 10px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow); padding: 10px 16px 10px 10px;
+    font-size: 0.85rem; font-weight: 700;
+  }
+  .float-card img { width: 44px; height: 44px; border-radius: 12px; }
+  .float-card small { display: block; color: var(--muted); font-weight: 500; font-size: 0.72rem; line-height: 1.3; }
+  .fc-timer { left: -56px; bottom: 26px; }
+  .fc-note { right: -40px; top: 18px; }
+  .fc-note .dot { width: 44px; height: 44px; border-radius: 12px; background: var(--mint); display: grid; place-items: center; font-size: 1.3rem; flex-shrink: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .float-card { animation: bob 5s ease-in-out infinite; }
+    .fc-note { animation-delay: 1.4s; }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  }
+
+  /* Sections */
+  section.block { padding: 64px 0; }
+  .sec-head { text-align: center; margin-bottom: 40px; }
+  .sec-head .en { font-family: "Fredoka", sans-serif; font-weight: 600; letter-spacing: 0.3em; font-size: 0.78rem; color: var(--yellow-deep); text-transform: uppercase; }
+  .sec-head h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 900; margin: 6px 0 0; }
+  .sec-head p { color: var(--muted); margin: 10px auto 0; max-width: 34em; font-size: 0.98rem; }
+
+  /* App cards */
+  .apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px 26px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .card .icon { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 18px; }
+  .card .icon-emoji { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 18px; display: grid; place-items: center; font-size: 2.4rem; }
+  .icon-roulette { background: var(--peach); }
+  .icon-fortune { background: var(--mint); }
+  .card h3 { font-size: 1.2rem; font-weight: 900; margin: 0 0 8px; }
+  .card p { color: var(--ink-2); font-size: 0.94rem; margin: 0; flex: 1; }
+  .status {
+    display: inline-block; align-self: flex-start; margin-top: 16px;
+    font-size: 0.78rem; font-weight: 900; padding: 3px 12px; border-radius: 999px;
+  }
+  .status-review { background: var(--chip); color: #8a6100; border: 1.5px solid var(--yellow-deep); }
+  @media (prefers-color-scheme: dark) { .status-review { color: var(--yellow); } }
+  .status-dev { background: transparent; color: var(--muted); border: 1.5px solid var(--line); }
+  .status-soon { background: var(--navy); color: #fff; }
+  @media (prefers-color-scheme: dark) { .status-soon { background: var(--yellow); color: #0a0a37; } }
+
+  /* About band */
+  .band { background: var(--navy); color: var(--on-navy); border-radius: 28px; padding: 52px 48px; display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; }
+  .band img { width: 120px; height: 120px; border-radius: 50%; }
+  .band h2 { margin: 0 0 10px; font-size: 1.5rem; font-weight: 900; }
+  .band p { color: var(--on-navy-dim); margin: 0; max-width: 40em; }
+  .band .en { font-family: "Fredoka", sans-serif; letter-spacing: 0.3em; font-size: 0.72rem; color: var(--yellow); }
+
+  /* Links & contact */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; box-shadow: var(--shadow); }
+  .panel h3 { margin: 0 0 16px; font-size: 1.1rem; font-weight: 900; }
+  .link-list { list-style: none; margin: 0; padding: 0; }
+  .link-list li { border-top: 1px dashed var(--line); }
+  .link-list li:first-child { border-top: none; }
+  .link-list a {
+    display: flex; align-items: center; gap: 12px; padding: 13px 4px; min-height: 48px;
+    text-decoration: none; font-weight: 700; font-size: 0.97rem;
+  }
+  .link-list a:hover { color: var(--yellow-deep); }
+  .link-list .arr { margin-left: auto; color: var(--muted); }
+  .panel p { color: var(--ink-2); font-size: 0.95rem; margin: 0 0 18px; }
+  .mail { font-weight: 900; word-break: break-all; }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0 40px; margin-top: 24px; }
+  .foot { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.85rem; }
+  .foot .brand-mini { display: flex; align-items: center; gap: 8px; font-weight: 900; color: var(--ink); }
+  .foot .brand-mini img { width: 26px; height: 26px; border-radius: 50%; }
+
+  @media (max-width: 860px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-copy p { margin-left: auto; margin-right: auto; }
+    .cta-row { justify-content: center; }
+    .hero { padding: 48px 0 72px; }
+    .fc-timer { left: -6px; }
+    .fc-note { right: -6px; }
+    .apps { grid-template-columns: 1fr; }
+    .band { grid-template-columns: 1fr; text-align: center; padding: 40px 28px; justify-items: center; }
+    .two-col { grid-template-columns: 1fr; }
+    .brand small { display: none; }
+  }
+  @media (max-width: 640px) {
+    .nav { flex-wrap: wrap; gap: 2px 12px; padding: 8px 0 10px; min-height: 0; }
+    nav.main { flex: 1 1 100%; margin-left: 0; justify-content: space-between; }
+    nav.main a { padding: 8px 6px; font-size: 0.88rem; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <img src="logo.webp" alt="ままるスタジオのロゴ">
-    <h1>ままるスタジオ</h1>
-    <div class="en">MAMARU STUDIO</div>
-    <p>個人でアプリを作っている、小さなスタジオです。<br>シンプルで使いやすいアプリを目指しています。</p>
-  </header>
 
-  <section>
-    <h2>アプリ</h2>
-    <div class="app">
-      <img src="timer-icon.png" alt="シンプルタイマーのアイコン">
-      <div>
-        <h3>シンプルタイマー</h3>
-        <p>複数のタイマーとストップウォッチをひとつにまとめた、シンプルなタイマーアプリです。料理、勉強、筋トレなど、日常のいろいろな場面で使えます。</p>
-        <span class="badge">リリース準備中</span>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="logo.webp" alt="ままるスタジオのロゴ" />
+      <span>ままるスタジオ<small>MAMARU STUDIO</small></span>
+    </a>
+    <nav class="main" aria-label="メインナビゲーション">
+      <a href="#apps">アプリ</a>
+      <a href="#about">スタジオについて</a>
+      <a href="#links">リンク</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <div class="blob blob-peach" aria-hidden="true"></div>
+    <div class="blob blob-mint" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="badge">個人開発の小さなスタジオ</span>
+        <h1>シンプルで、<br /><span class="hl">使いやすい</span>アプリを<br />届けます。</h1>
+        <p>個人でアプリを作っている、小さなスタジオです。毎日使うものだからこそ、迷わず使えるシンプルさを大切にしています。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#apps">アプリを見る</a>
+          <a class="btn btn-ghost" href="#contact">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img class="logo-big" src="logo.webp" alt="ままるスタジオのロゴ（黄色い丸に紺色の「ま。」）" />
+        <div class="float-card fc-timer">
+          <img src="timer-icon.png" alt="" />
+          <span>シンプルタイマー<small>App Store 審査中</small></span>
+        </div>
+        <div class="float-card fc-note">
+          <span class="dot" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a0a37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+          <span>開発の実録<small>noteで連載中</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" id="apps">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="en">Apps</div>
+        <h2>アプリ</h2>
+        <p>いま取り組んでいるアプリたちです。</p>
+      </div>
+      <div class="apps">
+        <article class="card">
+          <img class="icon" src="timer-icon.png" alt="シンプルタイマーのアプリアイコン" />
+          <h3>シンプルタイマー</h3>
+          <p>複数のタイマーとストップウォッチをひとつにまとめた、シンプルなタイマーアプリです。料理、勉強、筋トレなど、日常のいろいろな場面で使えます。</p>
+          <span class="status status-review">App Store 審査中</span>
+        </article>
+        <article class="card">
+          <div class="icon-emoji icon-roulette" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M24 24 L24 5 A19 19 0 0 1 40.5 14.5 Z" fill="#ffc93c"/><path d="M24 24 L40.5 33.5 A19 19 0 0 1 24 43 Z" fill="#0a0a37"/><path d="M24 24 L7.5 33.5 A19 19 0 0 1 7.5 14.5 Z" fill="#f5a623"/><circle cx="24" cy="24" r="19" fill="none" stroke="#0a0a37" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#fff" stroke="#0a0a37" stroke-width="2.5"/><path d="M24 0 L28.5 8 L19.5 8 Z" fill="#0a0a37"/></svg></div>
+          <h3>ルーレット</h3>
+          <p>矢印ルーレット、ダーツ投げルーレット、カプセルが減っていくガチャマシンの3モードが入ったルーレットアプリ。ビンゴ（00〜99）にも対応します。</p>
+          <span class="status status-dev">開発中</span>
+        </article>
+        <article class="card">
+          <div class="icon-emoji icon-fortune" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0a0a37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 L27.5 18.5 L40 22 L27.5 25.5 L24 38 L20.5 25.5 L8 22 L20.5 18.5 Z" fill="#ffc93c"/><path d="M38 34 l1.2 3.8 L43 39 l-3.8 1.2 L38 44 l-1.2 -3.8 L33 39 l3.8 -1.2 Z" fill="#fff"/></svg></div>
+          <h3>AI占い ほしミラ</h3>
+          <p>AIの占い師「ミラ」が星占いとタロットを届けるサービス。占いの結果は毎日変わります。</p>
+          <span class="status status-soon">準備中</span>
+        </article>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2>リンク</h2>
-    <ul class="links">
-      <li>X（旧Twitter）: <a href="https://x.com/mamaru_studio">@mamaru_studio</a></li>
-      <li><a href="https://maxa999jp.github.io/simple-timer-privacy/">プライバシーポリシー</a></li>
-    </ul>
+  <section class="block" id="about" style="padding-top: 8px;">
+    <div class="wrap">
+      <div class="band">
+        <img src="logo.webp" alt="ままるスタジオのロゴ" />
+        <div>
+          <div class="en">ABOUT</div>
+          <h2>スタジオについて</h2>
+          <p>ままるスタジオは、個人でアプリを作っている小さなスタジオです。2026年11月に開業しました。作ったアプリのことや、個人開発の進み具合は note の実録シリーズでも公開しています。</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>お問い合わせ</h2>
-    <p>アプリに関するお問い合わせは、メールまたはXのDMでお願いします。<br>
-    メール: <a href="mailto:mamaru999jp@gmail.com">mamaru999jp@gmail.com</a></p>
+  <section class="block" id="links" style="padding-top: 8px;">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="en">Links &amp; Contact</div>
+        <h2>リンク・お問い合わせ</h2>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <h3>リンク</h3>
+          <ul class="link-list">
+            <li><a href="https://x.com/mamaru_studio" target="_blank" rel="noopener">X（旧Twitter）@mamaru_studio<span class="arr">→</span></a></li>
+            <li><a href="https://note.com/mamaru_studio" target="_blank" rel="noopener">note（開発の実録シリーズ）<span class="arr">→</span></a></li>
+            <li><a href="https://maxa999jp.github.io/simple-timer-privacy/" target="_blank" rel="noopener">プライバシーポリシー（シンプルタイマー）<span class="arr">→</span></a></li>
+          </ul>
+        </div>
+        <div class="panel" id="contact">
+          <h3>お問い合わせ</h3>
+          <p>アプリに関するお問い合わせは、メールまたはXのDMでお願いします。</p>
+          <a class="btn btn-primary mail" href="mailto:mamaru999jp@gmail.com">mamaru999jp@gmail.com</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer>© 2026 ままるスタジオ (Mamaru Studio)</footer>
-</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand-mini"><img src="logo.webp" alt="" />ままるスタジオ</span>
+    <span>© 2026 ままるスタジオ (Mamaru Studio)</span>
+  </div>
+</footer>
+
 </body>
 </html>
