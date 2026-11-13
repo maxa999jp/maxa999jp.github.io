@@ -150,6 +150,9 @@
   .status-dev { background: transparent; color: var(--muted); border: 1.5px solid var(--line); }
   .status-soon { background: var(--navy); color: #fff; }
   @media (prefers-color-scheme: dark) { .status-soon { background: var(--yellow); color: #0a0a37; } }
+  .status-live { background: #2e9e5b; color: #fff; }
+  a.status { text-decoration: none; }
+  a.status:hover { opacity: 0.85; }
 
   /* About band */
   .band { background: var(--navy); color: var(--on-navy); border-radius: 28px; padding: 52px 48px; display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; }
@@ -268,7 +271,7 @@
           <div class="icon-emoji icon-fortune" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0a0a37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 L27.5 18.5 L40 22 L27.5 25.5 L24 38 L20.5 25.5 L8 22 L20.5 18.5 Z" fill="#ffc93c"/><path d="M38 34 l1.2 3.8 L43 39 l-3.8 1.2 L38 44 l-1.2 -3.8 L33 39 l3.8 -1.2 Z" fill="#fff"/></svg></div>
           <h3>AI占い ほしミラ</h3>
           <p>AIの占い師「ミラ」が星占いとタロットを届けるサービス。占いの結果は毎日変わります。</p>
-          <span class="status status-soon">準備中</span>
+          <a class="status status-live" href="https://hoshimira.com" target="_blank" rel="noopener">公開中 — サイトを見る</a>
         </article>
       </div>
     </div>
